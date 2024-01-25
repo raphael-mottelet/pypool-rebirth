@@ -78,7 +78,7 @@ class Character():
             self.animating = False  # On définit l'animation sur false et on arrête le mouvement
             self.idle_frame_index = 0  # On réinitialise idle_frame_index lors de l'arrêt du mouvement
 
-    def is_collision_with_walls(self, tile_map):
+    def is_collision_with_walls(self, tile_map): #nouvelle fonction qui règle les bugs de collision
         """
         Nouvelle fonction qui vérifie s'il y a une collision avec les murs à la nouvelle position du personnage.
         cette fonction règle le problème de collision
