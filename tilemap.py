@@ -38,10 +38,10 @@ class TileMap:
         """
         Vérifie si la tuile à la position (col, row) est un mur.
 
-        Parameters:
+        Parametres:
         - col, row: indices de la tuile
 
-        Returns:
+        Retourne:
         - True si la tuile est un mur, False sinon
         """
         # Assurez-vous que col et row sont dans les limites de la carte

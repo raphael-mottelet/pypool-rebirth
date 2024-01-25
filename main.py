@@ -47,7 +47,7 @@ for i in range(gameconstants.MOUVEMENTS_LAT_FRAMES):
     frame = scale_img(frame, gameconstants.SCALE) #on importe scale img qui définis la taille de notre image de personnage
     animation_list.append(frame)
 
-player = Character(100, 100, animation_list, idle_animation_list) #position initiale de notre box personnage, et import des différentes animations
+player = Character(80, 190, animation_list, idle_animation_list) #position initiale de notre box personnage, et import des différentes animations
 run = True
 
 while run:
@@ -80,7 +80,7 @@ while run:
         dx = 0 #petit problème dans cette partie du code, crée un bug qui empeche le joueur de se déplacer après quelques colisions
         dy = 0
 
-    player.mouvements(dx, dy)  # mouvements du joueur sur l'axe X et Y
+    player.mouvements(dx, dy, tile_map)  # mouvements du joueur sur l'axe X et Y
     player.update()  # on update l'état du joueur
     player.draw(screen)  # on dessine notre joueur (carré rouge)
 
