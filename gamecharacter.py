@@ -9,18 +9,18 @@ def scale_img(image, scale):
     return pygame.transform.scale(image, (int(w * scale), int(h * scale)))
 
 class Character():
-# __init__ method
+   #On déclare notre méthode init 
     def __init__(self, x, y, animation_list, idle_animation):
-        self.flip = False
-        self.animation_list = animation_list
-        self.idle_animation = idle_animation
+        self.flip = False #on initialise flip en flase au début. Flip nous sert à retourner vers la gauche la même image (permet d'économiser de la place coté asset)
+        self.animation_list = animation_list #attribu pour notre classe character (pour l'animation "run")
+        self.idle_animation = idle_animation #attribu pour notre classe character (pour l'animation au repos)
         self.frame_index = 0
         self.idle_frame_index = 0
         self.update_time = pygame.time.get_ticks()
-        self.image = self.idle_animation[0]  # Set to the first frame of the idle animation
+        self.image = self.idle_animation[0]  # On fait rentrer notre premiere frame dans le tableau pour l'animation au repos (ne marche pas)
         self.rect = pygame.Rect(0, 0, 40, 40)
         self.rect.center = (x, y)
-        self.animating = False  # Initialize animating as False
+        self.animating = False  # On initialise notre animation sur false 
         self.idle_update_time = pygame.time.get_ticks()  # Nouvelle variable pour gérer l'animation au repos
 
         self.initial_x = x
@@ -43,9 +43,9 @@ class Character():
         # Utiliser self.flip pour décider si l'image doit être retournée ou non
         flipped_image = pygame.transform.flip(self.image, self.flip, False)
 
-        # On dessine le personnage avec les ajustements de position, on draw la box rouge "STATIC_RED" ou se trouve le sprite personnage
+        # On dessine le personnage avec les ajustements de position, on draw la box rouge "STATIC_PLAYER_BOX" ou se trouve le sprite personnage
         surface.blit(flipped_image, adjusted_position)
-        pygame.draw.rect(surface, gameconstants.STATIC_RED, self.rect, 1)
+        pygame.draw.rect(surface, gameconstants.STATIC_PLAYER_BOX, self.rect, 1)
 
 
 

@@ -2,11 +2,14 @@ import pygame
 import gameconstants
 from gamecharacter import Character
 from gamecharacter import scale_img
+from tilemap import TileMap
 
 pygame.init()
 
 screen = pygame.display.set_mode((gameconstants.SCREEN_WIDTH, gameconstants.SCREEN_HEIGHT))
 pygame.display.set_caption("PYRAMAZE")
+
+tile_map = TileMap(gameconstants.TILE_SIZE, 'tilemap_data.json') #on importe notre tilemap, avec ses données en json
 
 clock = pygame.time.Clock()
 
@@ -16,15 +19,13 @@ moving_up = False
 moving_down = False
 
 
-#_____________________________________________________________________________________________
 
 # On charge la  feuille de sprite pour l'animation au repos (mais l'animation est cassée)
 idle_sprite_sheet = pygame.image.load("assets/images/characters/player/Punk_idle.png").convert_alpha()
-
-# On Extrait les frames de la feuille de sprite pour l'animation au repos et le nombre de frame depuis la constante NUM_IDLE_FRAMES
-idle_frame_width = idle_sprite_sheet.get_width() // gameconstants.NUM_IDLE_FRAMES
+idle_frame_width = idle_sprite_sheet.get_width() // gameconstants.NUM_IDLE_FRAMES # On Extrait les frames de la feuille de sprite pour l'animation au repos et le nombre de frame depuis la constante NUM_IDLE_FRAMES
 idle_frame_height = idle_sprite_sheet.get_height()
 
+#liste sensé importer les différentes frame pour l'animation (mais l'animation ne marche pas, probablement une erreur dans la fonction update de gamecharacter.py)
 idle_animation_list = []
 for i in range(gameconstants.NUM_IDLE_FRAMES):
     idle_frame = idle_sprite_sheet.subsurface((i * idle_frame_width, 0, idle_frame_width, idle_frame_height))
@@ -47,7 +48,6 @@ for i in range(gameconstants.MOUVEMENTS_LAT_FRAMES):
 
 player = Character(100, 100, animation_list, idle_animation_list) #position initiale de notre box personnage, et import des différentes animations
 run = True
-#_____________________________________________________________________________________________
 
 while run:
     clock.tick(gameconstants.FPS)
@@ -69,9 +69,10 @@ while run:
     if moving_down:
         dy = gameconstants.SPEED
 
-    player.mouvements(dx, dy)
-    player.update()
-    player.draw(screen)
+    player.mouvements(dx, dy) #mouvements du joueur sur l'axe X et Y
+    player.update() #on update l'état du joueur
+    player.draw(screen) #on déssine notre joueur (carré rouge)
+    tile_map.draw(screen) #on déssine notre tilemap
 
   #ici on gere les evenements, par exemple si on quitte la fenetre
     for event in pygame.event.get():
