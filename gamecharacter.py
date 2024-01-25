@@ -1,5 +1,3 @@
-# gamecharacter.py
-import math
 import pygame
 import gameconstants
 
@@ -27,8 +25,6 @@ class Character():
         self.initial_y = y
         self.previous_rect = self.rect.copy()
 
-
-
     def draw(self, surface):
         # Ajustements pour la droite et la gauche
         if self.flip:  # Si le personnage va vers la gauche on ajuste sa position à gauche
@@ -46,8 +42,6 @@ class Character():
         # On dessine le personnage avec les ajustements de position, on draw la box rouge "STATIC_PLAYER_BOX" ou se trouve le sprite personnage
         surface.blit(flipped_image, adjusted_position)
         pygame.draw.rect(surface, gameconstants.STATIC_PLAYER_BOX, self.rect, 1)
-
-
 
     def mouvements(self, dx, dy):
         if dx != 0 or dy != 0:
@@ -67,8 +61,6 @@ class Character():
         else:
             self.animating = False  # On définis l'animation sur false et on arrete le mouvement
             self.idle_frame_index = 0  # On réinitialise idle_frame_index lors de l'arrêt du mouvement
-
-
 
     def update(self):
         animation_cooldown = 70 #permet de modifier la vitesse de transition entre les animations (mais pas visible car l'animation "IDLE" (au repos) est cassée)
@@ -90,7 +82,3 @@ class Character():
                 if self.idle_frame_index >= len(self.idle_animation):
                     self.idle_frame_index = 0
                 self.idle_update_time = pygame.time.get_ticks()
-
-
-
-

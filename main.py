@@ -52,7 +52,8 @@ run = True
 while run:
     clock.tick(gameconstants.FPS)
     screen.fill(gameconstants.BG)
-
+    
+    tile_map.draw(screen) #cette condition est mise ici, de manière à ce que notre personnage soit au premier plan et non caché par la tilemap.
   #on calcule les mouvements du joueur avec une suite de conditions if
     dx = 0
     dy = 0
@@ -72,7 +73,6 @@ while run:
     player.mouvements(dx, dy) #mouvements du joueur sur l'axe X et Y
     player.update() #on update l'état du joueur
     player.draw(screen) #on déssine notre joueur (carré rouge)
-    tile_map.draw(screen) #on déssine notre tilemap
 
   #ici on gere les evenements, par exemple si on quitte la fenetre
     for event in pygame.event.get():
