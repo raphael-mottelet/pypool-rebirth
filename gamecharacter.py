@@ -127,7 +127,7 @@ class Character():
 
 
 
-                """
+                """ ancinenne fonction mouvement qui posait des problèmes concernant les bugs de collision
     def mouvements(self, dx, dy):
         if dx != 0 or dy != 0:
             dx = dx * (1 / 2) * gameconstants.SPEED  # On ajuster la vitesse pour le mouvement diagonal
