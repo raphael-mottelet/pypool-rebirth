@@ -2,6 +2,7 @@ import pygame
 import gameconstants
 from gamecharacter import Character
 from gamecharacter import scale_img
+from gamephysics import is_collision
 from tilemap import TileMap
 
 pygame.init()
@@ -55,14 +56,12 @@ while run:
     
     tile_map.draw(screen) #cette condition est mise ici, de manière à ce que notre personnage soit au premier plan et non caché par la tilemap.
   #on calcule les mouvements du joueur avec une suite de conditions if
+
+    #on calcule les mouvements du joueur avec une suite de conditions if
     dx = 0
     dy = 0
     if moving_right:
         dx = gameconstants.SPEED
-        player.animating = True  # Active l'animation uniquement lorsque la touche droite est enfoncée
-    else:
-        player.animating = False # Desactive l'animation uniquement lorsque la touche droite est enfoncée
-
     if moving_left:
         dx = -gameconstants.SPEED
     if moving_up:
@@ -70,35 +69,47 @@ while run:
     if moving_down:
         dy = gameconstants.SPEED
 
-    player.mouvements(dx, dy) #mouvements du joueur sur l'axe X et Y
-    player.update() #on update l'état du joueur
-    player.draw(screen) #on déssine notre joueur (carré rouge)
+    # Créer un nouveau rectangle pour la nouvelle position du joueur
+    new_player_rect = player.rect.move(dx, dy)
 
-  #ici on gere les evenements, par exemple si on quitte la fenetre
+    # Vérifier la collision en fonction du nouveau rectangle
+    if not is_collision(tile_map, new_player_rect.x, new_player_rect.y, new_player_rect.width, new_player_rect.height):
+        player.rect = new_player_rect
+    else:
+        # En cas de collision, on n'éffectue aucun déplacement en méttant les déplacements x et y à 0
+        dx = 0 #petit problème dans cette partie du code, crée un bug qui empeche le joueur de se déplacer après quelques colisions
+        dy = 0
+
+    player.mouvements(dx, dy)  # mouvements du joueur sur l'axe X et Y
+    player.update()  # on update l'état du joueur
+    player.draw(screen)  # on dessine notre joueur (carré rouge)
+
+    # ici on gere les evenements, par exemple si on quitte la fenetre
     for event in pygame.event.get():
-      if event.type == pygame.QUIT:
-        run = False
-      #ici on prend les input pour déplacer notre joueur quand on appuie sur la touche
-      if event.type == pygame.KEYDOWN:
-        if event.key == pygame.K_q:  # Q (gauche)
-          moving_left = True
-        if event.key == pygame.K_d:  #D (droite)
-          moving_right = True
-        if event.key == pygame.K_z:  # Z (haut)
-          moving_up = True
-        if event.key == pygame.K_s:  #S (bas)
-          moving_down = True
+        if event.type == pygame.QUIT:
+            run = False
+        # ici on prend les input pour dé
+        # placer notre joueur quand on appuie sur la touche
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_q:  # Q (gauche)
+                moving_left = True
+            if event.key == pygame.K_d:  # D (droite)
+                moving_right = True
+            if event.key == pygame.K_z:  # Z (haut)
+                moving_up = True
+            if event.key == pygame.K_s:  # S (bas)
+                moving_down = True
 
-      #ici on prend les input pour arréter de déplacer notre joueur quand il relache la touche
-      if event.type == pygame.KEYUP:
-        if event.key == pygame.K_q: # Q (gauche)
-          moving_left = False
-        if event.key == pygame.K_d: #D (droite)
-          moving_right = False
-        if event.key == pygame.K_z: # Z (haut)
-          moving_up = False
-        if event.key == pygame.K_s: #S (bas)
-          moving_down = False
+        # ici on prend les input pour arrêter de déplacer notre joueur quand il relache la touche
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_q:  # Q (gauche)
+                moving_left = False
+            if event.key == pygame.K_d:  # D (droite)
+                moving_right = False
+            if event.key == pygame.K_z:  # Z (haut)
+                moving_up = False
+            if event.key == pygame.K_s:  # S (bas)
+                moving_down = False
 
     pygame.display.update()
 

@@ -33,3 +33,21 @@ class TileMap:
                     surface.blit(self.wall_image, rect)
                 elif tile_id == 0:  # Ground
                     surface.blit(self.ground_image, rect)
+
+    def is_wall(self, col, row):
+        """
+        Vérifie si la tuile à la position (col, row) est un mur.
+
+        Parameters:
+        - col, row: indices de la tuile
+
+        Returns:
+        - True si la tuile est un mur, False sinon
+        """
+        # Assurez-vous que col et row sont dans les limites de la carte
+        if 0 <= col < len(self.map_data[0]) and 0 <= row < len(self.map_data):
+            # Si la valeur dans map_data à la position (col, row) est 1, c'est un mur
+            return self.map_data[row][col] == 1
+        else:
+            # En dehors des limites de la carte, considérons cela comme un mur
+            return True
