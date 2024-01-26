@@ -46,6 +46,8 @@ class Character():
 
 
     def mouvements(self, dx, dy, tile_map):
+
+        screen_scroll = [0,0]
         if dx != 0 or dy != 0:
             dx = dx * (1 / 2) * gameconstants.SPEED  # On ajuste la vitesse pour le mouvement diagonal
             dy = dy * (1 / 2) * gameconstants.SPEED

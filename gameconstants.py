@@ -8,6 +8,10 @@ LOGO_HEIGHT = 250  # Hauteur du logo dans le menu
 STATIC_PLAYER_BOX = (255, 0, 0) #on définis la couleur de notre box de référence pour le personnage
 STATIC_TILE_GRID = (0, 255, 0)  # Remplacez cela par la couleur que vous souhaitez utiliser
 BG = (40, 25, 25) #on définis la couleur du background
+BG_GAMEMENU = (0, 128, 0, 128)  # Adjust the alpha value as needed
+
+SCROLL_THRESH = 200
+
 
 MOUVEMENTS_LAT_FRAMES = 6  # On ajuste le nombre de frame à display en fonction du nombre compris dans le .png (ici 6 frames)
 NUM_IDLE_FRAMES = 4 # ici on ajuste par rapport au nombre de frame du fichier .png pour l'animation de repos (mais l'animation de repos ne marche pas)
