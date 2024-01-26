@@ -2,6 +2,8 @@ FPS = 60 #images par secondes du jeux
 SCREEN_WIDTH = 1600
 SCREEN_HEIGHT = 800
 
+LOGO_WIDTH = 200  # Largeur du logo dans le menu
+LOGO_HEIGHT = 250  # Hauteur du logo dans le menu
 
 STATIC_PLAYER_BOX = (255, 0, 0) #on définis la couleur de notre box de référence pour le personnage
 STATIC_TILE_GRID = (0, 255, 0)  # Remplacez cela par la couleur que vous souhaitez utiliser

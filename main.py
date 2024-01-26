@@ -4,15 +4,20 @@ from gamecharacter import Character
 from gamecharacter import scale_img
 from gamephysics import is_collision
 from tilemap import TileMap
+from mainmenu import main_menu
+from gamemenu import game_menu
 
 pygame.init()
 
 screen = pygame.display.set_mode((gameconstants.SCREEN_WIDTH, gameconstants.SCREEN_HEIGHT))
 pygame.display.set_caption("PYRAMAZE")
+main_menu(screen)
 
 tile_map = TileMap(gameconstants.TILE_SIZE, 'tilemap_data.json') #on importe notre tilemap, avec ses données en json
 
 clock = pygame.time.Clock()
+
+screen_scroll=[0,0]
 
 moving_left = False
 moving_right = False
@@ -51,6 +56,8 @@ player = Character(90, 190, animation_list, idle_animation_list) #position initi
 run = True
 
 while run:
+
+    
     clock.tick(gameconstants.FPS)
     screen.fill(gameconstants.BG)
     
@@ -99,6 +106,8 @@ while run:
                 moving_up = True
             if event.key == pygame.K_s:  # S (bas)
                 moving_down = True
+            if event.key == pygame.K_ESCAPE: # Si j'appuie sur la touche echap
+                game_menu(screen)  # Afficher le menu pause
 
         # ici on prend les input pour arrêter de déplacer notre joueur quand il relache la touche
         if event.type == pygame.KEYUP:
