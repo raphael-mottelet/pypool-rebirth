@@ -1,13 +1,18 @@
 import pygame
 import gameconstants
 
-#Grossièrement, ce code est la même chose à peut de choses près que le fichier mainmenu.py
-def game_menu(screen):
+def game_menu(screen, game_screen):
     clock = pygame.time.Clock()
     selected_option = 0
 
+    menu_surface = pygame.Surface((gameconstants.SCREEN_WIDTH // 2, gameconstants.SCREEN_HEIGHT // 2), pygame.SRCALPHA)
+    menu_surface.fill((0, 0, 0, 128))  # Ajustez l'alpha selon votre préférence
+
     while True:
-        screen.fill(gameconstants.BG)
+        screen.blit(game_screen, (0, 0))  # Afficher le fond du jeu
+
+        # Afficher le menu avec transparence
+        screen.blit(menu_surface, (gameconstants.SCREEN_WIDTH // 4, gameconstants.SCREEN_HEIGHT // 4))
 
         font = pygame.font.Font(None, 36)
 
@@ -27,9 +32,9 @@ def game_menu(screen):
                 pygame.quit()
                 quit()
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_UP or event.key == pygame.K_z: #Si on utilise la touche haut ou Z, alors on sélectionne vers le haut
+                if event.key == pygame.K_UP or event.key == pygame.K_z:
                     selected_option = (selected_option - 1) % len(menu_options)
-                elif event.key == pygame.K_DOWN or event.key == pygame.K_s: #Si on utilise la touche bas ou S, alors on sélectionne vers le BAS
+                elif event.key == pygame.K_DOWN or event.key == pygame.K_s:
                     selected_option = (selected_option + 1) % len(menu_options)
                 elif event.key == pygame.K_RETURN:
                     if menu_options[selected_option] == "Reprendre":
@@ -39,4 +44,3 @@ def game_menu(screen):
                         quit()
 
         clock.tick(gameconstants.FPS)
-
