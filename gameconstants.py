@@ -12,7 +12,6 @@ NUM_IDLE_FRAMES = 4 # ici on ajuste par rapport au nombre de frame du fichier .p
 SCALE = 2  # On ajuste la taille de nos frame
 TILE_SIZE = 55* SCALE # on set la taille de nos tuiles en fonction de la taille totale
 
-POSITION_INITIALE_JOUEUR = (100, 100)
 SPEED = 3  #on ajuste la vitesse du personnage
 AJUSTEMENT_POS_DROIT = 5 # On ajuste le positionement de notre personnage par rapport à la box de référence (à droite)
 DEPLACEMENT_POS_GAUCHE= 52 # On ajuste le positionement de notre personnage par rapport à la box de référence (à gauche)

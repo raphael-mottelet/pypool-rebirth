@@ -47,7 +47,7 @@ for i in range(gameconstants.MOUVEMENTS_LAT_FRAMES):
     frame = scale_img(frame, gameconstants.SCALE) #on importe scale img qui définis la taille de notre image de personnage
     animation_list.append(frame)
 
-player = Character(80, 190, animation_list, idle_animation_list) #position initiale de notre box personnage, et import des différentes animations
+player = Character(90, 190, animation_list, idle_animation_list) #position initiale de notre box personnage, et import des différentes animations
 run = True
 
 while run:

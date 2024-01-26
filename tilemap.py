@@ -29,9 +29,9 @@ class TileMap:
                 # On crée un rectangle représentant la tuile
                 rect = pygame.Rect(x, y, self.tile_size, self.tile_size)
 
-                if tile_id == 1:  # Wall
+                if tile_id == 1:  # Murs (les 1 matrice)
                     surface.blit(self.wall_image, rect)
-                elif tile_id == 0:  # Ground
+                elif tile_id == 0:  # Sol (les 0 de la matrice)
                     surface.blit(self.ground_image, rect)
 
     def is_wall(self, col, row):
@@ -44,7 +44,7 @@ class TileMap:
         Retourne:
         - True si la tuile est un mur, False sinon
         """
-        # Assurez-vous que col et row sont dans les limites de la carte
+        # on vérifie que les lignes et les colonnes sont dans la limite de la carte
         if 0 <= col < len(self.map_data[0]) and 0 <= row < len(self.map_data):
             # Si la valeur dans map_data à la position (col, row) est 1, c'est un mur
             return self.map_data[row][col] == 1
