@@ -82,7 +82,7 @@ while run:
     new_player_rect = player.rect.move(dx, dy)
 
     if tile_map.is_victory_tile(player.rect.x // gameconstants.TILE_SIZE, player.rect.y // gameconstants.TILE_SIZE):
-        Level_finished.game_menu(screen)
+        Level_finished(screen)
 
     # Vérifier la collision en fonction du nouveau rectangle
     if not is_collision(tile_map, new_player_rect.x, new_player_rect.y, new_player_rect.width, new_player_rect.height):
