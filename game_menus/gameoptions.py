@@ -39,7 +39,9 @@ def handle_options(screen, in_options, selected_option, lignes, colonnes):
                     if selected_option == 0:  # Si "Générer Map" est sélectionné
                         generer_labyrinthe(lignes, colonnes)  # Appeler la fonction de génération de map
                     elif selected_option == 1:  # Si "Sélectionner Map" est sélectionné
-                        # Ajoutez le code pour sélectionner une map ici
+
+                        #code pour selectionner une map (en cours)
+                        
                         pass
                 elif event.key == pygame.K_ESCAPE:
                     return  # Revenir au menu principal
