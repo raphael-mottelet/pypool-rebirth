@@ -1,3 +1,5 @@
+import sys
+sys.path.append("..") #cette ligne nous permet de faire des imports en dehors du repertoire
 import pygame
 import gameconstants
 from game_character.gamecharacter import Character
@@ -7,7 +9,7 @@ from game_physics.tilemap import TileMap
 from game_menus.mainmenu import main_menu
 from game_menus.gamemenu import game_menu
 from game_menus.levelfinished import Level_finished
-from game_menus.initialize_player import initialize_player
+from game_character.initialize_player import initialize_player
 
 
 pygame.init()

@@ -6,6 +6,9 @@ from game_physics.map_generator import generer_labyrinthe
 def handle_options(screen, in_options, selected_option):
     clock = pygame.time.Clock()
 
+
+    #ce fichier est grossierement un gros copié collé des autres menus, la différence resulte juste en les imports de la génération de map.
+
     while in_options:
         screen.fill(gameconstants.BG)
 
