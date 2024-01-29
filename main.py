@@ -10,6 +10,7 @@ from game_menus.mainmenu import main_menu
 from game_menus.gamemenu import game_menu
 from game_menus.levelfinished import Level_finished
 from game_character.initialize_player import initialize_player
+from game_menus.gameoptions import *
 
 
 pygame.init()
