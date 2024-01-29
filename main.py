@@ -6,6 +6,8 @@ from gamephysics import is_collision
 from tilemap import TileMap
 from mainmenu import main_menu
 from gamemenu import game_menu
+from levelfinished import Level_finished
+
 
 pygame.init()
 
@@ -13,7 +15,7 @@ screen = pygame.display.set_mode((gameconstants.SCREEN_WIDTH, gameconstants.SCRE
 pygame.display.set_caption("PYRAMAZE")
 main_menu(screen)
 
-tile_map = TileMap(gameconstants.TILE_SIZE, 'tilemap_data.json') #on importe notre tilemap, avec ses données en json
+tile_map = TileMap(gameconstants.TILE_SIZE, "gamelevels/tilemap_data.json") #on importe notre tilemap, avec ses données en json
 
 clock = pygame.time.Clock()
 
@@ -78,6 +80,9 @@ while run:
 
     # Créer un nouveau rectangle pour la nouvelle position du joueur
     new_player_rect = player.rect.move(dx, dy)
+
+    if tile_map.is_victory_tile(player.rect.x // gameconstants.TILE_SIZE, player.rect.y // gameconstants.TILE_SIZE):
+        Level_finished.game_menu(screen)
 
     # Vérifier la collision en fonction du nouveau rectangle
     if not is_collision(tile_map, new_player_rect.x, new_player_rect.y, new_player_rect.width, new_player_rect.height):

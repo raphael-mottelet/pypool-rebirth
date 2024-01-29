@@ -13,6 +13,7 @@ class TileMap:
         # On charge et redimensionne les images
         self.wall_image = pygame.transform.scale(pygame.image.load("assets/images/tilemap/wall.png"), (tile_size, tile_size))
         self.ground_image = pygame.transform.scale(pygame.image.load("assets/images/tilemap/ground.png"), (tile_size, tile_size))
+        self.victorytile_image = pygame.transform.scale(pygame.image.load("assets/images/tilemap/victorytile.png"), (tile_size, tile_size))
 
     def load_map_data(self, map_file):
         # On charge les données de la carte à partir du fichier JSON qui contient notre map
@@ -31,8 +32,25 @@ class TileMap:
 
                 if tile_id == 1:  # Murs (les 1 matrice)
                     surface.blit(self.wall_image, rect)
-                elif tile_id == 0:  # Sol (les 0 de la matrice)
+                if tile_id == 0:  # Sol (les 0 de la matrice)
                     surface.blit(self.ground_image, rect)
+                elif tile_id == 4:  # tuilde de la voctoire (4 sur la matrice)
+                    surface.blit(self.victorytile_image, rect)
+
+    def is_victory_tile(self, col, row):
+        """
+        Vérifie si la tuile à la position (col, row) est la tuile de victoire.
+
+        Paramètres:
+        - col, row: indices de la tuile
+
+        Retourne:
+        - True si la tuile est la tuile de victoire, False sinon
+        """
+        if 0 <= col < len(self.map_data[0]) and 0 <= row < len(self.map_data):
+            return self.map_data[row][col] == 4
+        else:
+            return False
 
     def is_wall(self, col, row):
         """

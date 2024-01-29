@@ -1,6 +1,7 @@
 import pygame
 import gameconstants
-from gamephysics import is_collision    
+from gamephysics import is_collision
+import tilemap   
 
 def scale_img(image, scale):
     w = image.get_width()
@@ -103,6 +104,30 @@ class Character():
                     return True  # Collision avec un mur
 
         return False  # Pas de collision
+
+
+    def is_collision_victory(self, tile_map):
+        """
+        Vérifie s'il y a une collision avec la tuile de victoire à la nouvelle position du personnage.
+
+        Paramètres:
+        - tile_map: instance de la classe TileMap
+
+        Retourne:
+        - True s'il y a collision avec la tuile de victoire, False sinon
+        """
+        # Convertis les coordonnées en indices de tuile
+        tile_x = int(self.rect.x / tile_map.tile_size)
+        tile_y = int(self.rect.y / tile_map.tile_size)
+
+        # Vérifie les collisions avec la tuile de victoire
+        for row in range(tile_y, int((self.rect.y + self.rect.height) / tile_map.tile_size) + 1):
+            for col in range(tile_x, int((self.rect.x + self.rect.width) / tile_map.tile_size) + 1):
+                if tile_map.is_victory(col, row):  # Ajoutez une méthode is_victory à votre classe TileMap
+                    print(f"Collision with victory tile at ({col}, {row})")  # Ligne pour le débogage, affiche les collisions dans le terminal
+                    return True  # Collision avec la tuile de victoire
+
+        return False  # Pas de collision avec la tuile de victoire
 
 
     def update(self):
