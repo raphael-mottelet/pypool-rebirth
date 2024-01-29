@@ -1,7 +1,7 @@
 import pygame
 import gameconstants
-from gamephysics import is_collision
-import tilemap   
+from game_physics.gamephysics import is_collision
+import game_physics.tilemap 
 
 def scale_img(image, scale):
     w = image.get_width()

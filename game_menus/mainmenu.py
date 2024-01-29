@@ -1,9 +1,13 @@
+import sys
+sys.path.append("..")#cette ligne nous permet de faire des imports en dehors du repertoire
 import pygame
 import gameconstants
+from game_physics.map_generator import generer_labyrinthe
 
 def main_menu(screen):
     clock = pygame.time.Clock()
-    selected_option = 0  # Ajout d'une variable pour suivre l'option sélectionnée
+    selected_option = 0 #variable qui permet de suivre les choix d'otions en incrémentant en fonction du choix sélectionné 
+    in_options = False # Variable pour suivre si l'utilisateur est dans le sous-menu "Options"
 
         # Ici on charge le logo
     logo = pygame.image.load("assets/images/menu/logo.png") #La on charge notre logo
@@ -26,6 +30,15 @@ def main_menu(screen):
             text_rect = text.get_rect(center=(gameconstants.SCREEN_WIDTH // 2, 300 + i * 50)) # Cette ligne définis la position du texte dans le menu
             screen.blit(text, text_rect)
 
+                # Ici si l'option "Options" est sélectionnée, afficher les sous-options
+        if selected_option == 1:
+            sub_options = ["Générer Map", "Sélectionner Map"]  # Sous-options
+            for i, sub_option in enumerate(sub_options):
+                text_color = (255, 255, 255)
+                text = font.render(sub_option, True, text_color)
+                text_rect = text.get_rect(center=(gameconstants.SCREEN_WIDTH // 2, 300 + (len(menu_options) + i) * 50))
+                screen.blit(text, text_rect)
+
         pygame.display.update() #on update pour afficher tout ça
 
         for event in pygame.event.get():
@@ -40,12 +53,29 @@ def main_menu(screen):
                 elif event.key == pygame.K_RETURN: #si on utilise la touche entrée pour selectionner une option dans le menu
                     if menu_options[selected_option] == "Jouer":
                         return  # On quitte la boucle pour commencer le jeu
-                    elif menu_options[selected_option] == "Options":
-                        # Ici on apelle la fonction des options du menu
-                        pass
+
                     elif menu_options[selected_option] == "Quitter": #ici on quitte juste le jeux directement depuis le menu
                         pygame.quit()
                         quit()
+
+                    elif selected_option == 1:  # Si "Options" est sélectionné
+                            in_options = True
+                            selected_option = 0
+                    else:  # Si l'utilisateur est dans le sous-menu "Options"
+                        if selected_option == 0:  # Si "Générer Map" est sélectionné
+                            generer_labyrinthe()  # Appeler la fonction de génération de map
+                            in_options = False
+                        elif selected_option == 1:  # Si "Sélectionner Map" est sélectionné
+                            # Ajoutez le code pour sélectionner une map ici
+                            pass
+                elif event.key == pygame.K_ESCAPE:  # Si la touche échappe est pressée, revenez en arrière
+                    if in_options:
+                        in_options = False
+                        selected_option = 0
+                elif event.key == pygame.K_RIGHT and in_options:  # Si l'utilisateur est dans le sous-menu "Options" et la touche droite est pressée
+                    selected_option = 0
+                elif event.key == pygame.K_LEFT and not in_options:  # Si l'utilisateur n'est pas dans le sous-menu "Options" et la touche gauche est pressée
+                    selected_option = 1
 
         clock.tick(gameconstants.FPS)
 

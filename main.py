@@ -1,12 +1,13 @@
 import pygame
 import gameconstants
-from gamecharacter import Character
-from gamecharacter import scale_img
-from gamephysics import is_collision
-from tilemap import TileMap
-from mainmenu import main_menu
-from gamemenu import game_menu
-from levelfinished import Level_finished
+from game_character.gamecharacter import Character
+from game_character.gamecharacter import scale_img
+from game_physics.gamephysics import is_collision
+from game_physics.tilemap import TileMap
+from game_menus.mainmenu import main_menu
+from game_menus.gamemenu import game_menu
+from game_menus.levelfinished import Level_finished
+from game_menus.initialize_player import initialize_player
 
 
 pygame.init()
@@ -54,7 +55,7 @@ for i in range(gameconstants.MOUVEMENTS_LAT_FRAMES):
     frame = scale_img(frame, gameconstants.SCALE) #on importe scale img qui définis la taille de notre image de personnage
     animation_list.append(frame)
 
-player = Character(90, 190, animation_list, idle_animation_list) #position initiale de notre box personnage, et import des différentes animations
+player = initialize_player(animation_list, idle_animation_list) #position initiale de notre box personnage, et import des différentes animations. On importe tout depuis notre fichier initialize player qui servira plus tard à générer des positions aléatoires du joeur.
 run = True
 
 while run:

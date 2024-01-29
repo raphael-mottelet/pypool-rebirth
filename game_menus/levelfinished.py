@@ -33,7 +33,7 @@ def Level_finished(screen):
                     selected_option = (selected_option + 1) % len(menu_options)
                 elif event.key == pygame.K_RETURN:
                     if menu_options[selected_option] == "Recommencer":
-                        return  # Quitter le menu pour reprendre le jeu
+                        return "restart"  # Indicate that the game needs to be restarted
                     elif menu_options[selected_option] == "Quitter":
                         pygame.quit()
                         quit()
