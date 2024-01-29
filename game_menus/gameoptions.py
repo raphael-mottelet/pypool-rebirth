@@ -3,11 +3,12 @@ sys.path.append("..") #cette ligne nous permet de faire des imports en dehors du
 import pygame
 import gameconstants
 from game_physics.map_generator import generer_labyrinthe
-def handle_options(screen, in_options, selected_option):
-    clock = pygame.time.Clock()
-
 
     #ce fichier est grossierement un gros copié collé des autres menus, la différence resulte juste en les imports de la génération de map.
+
+def handle_options(screen, in_options, selected_option, lignes, colonnes):
+
+    clock = pygame.time.Clock()
 
     while in_options:
         screen.fill(gameconstants.BG)
@@ -16,7 +17,7 @@ def handle_options(screen, in_options, selected_option):
         sub_options = ["Générer Map", "Sélectionner Map"]
 
         for i, sub_option in enumerate(sub_options):
-            text_color = (255, 255, 255)
+            text_color = (0, 128, 255)
             if i == selected_option:
                 text_color = (255, 0, 0)
             text = font.render(sub_option, True, text_color)
@@ -36,11 +37,12 @@ def handle_options(screen, in_options, selected_option):
                     selected_option = (selected_option + 1) % len(sub_options)
                 elif event.key == pygame.K_RETURN:
                     if selected_option == 0:  # Si "Générer Map" est sélectionné
-                        generer_labyrinthe()  # Appeler la fonction de génération de map
+                        generer_labyrinthe(lignes, colonnes)  # Appeler la fonction de génération de map
                     elif selected_option == 1:  # Si "Sélectionner Map" est sélectionné
                         # Ajoutez le code pour sélectionner une map ici
                         pass
                 elif event.key == pygame.K_ESCAPE:
                     return  # Revenir au menu principal
+
 
         clock.tick(gameconstants.FPS)
