@@ -1,4 +1,3 @@
-# gamephysics.py
 def is_collision(tile_map, x, y, width, height):
     """
     Vérifie s'il y a une collision à la nouvelle position du personnage. Le code est par contre à revoir, il y a de gros bug de colision 
