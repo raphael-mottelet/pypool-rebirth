@@ -29,7 +29,7 @@ class TileMap:
                 # On crée un rectangle représentant la tuile
                 rect = pygame.Rect(x, y, self.tile_size, self.tile_size)
 
-                if tile_id == 1:  # Murs (les 1 matrice)
+                if tile_id == 1:  # Murs (les 1 matrice), en gros si c'est le cas on charge l'asset correspondant, pareil pour les conditions suivantes
                     surface.blit(self.wall_image, rect)
                 if tile_id == 0:  # Sol (les 0 de la matrice)
                     surface.blit(self.ground_image, rect)
@@ -38,7 +38,7 @@ class TileMap:
 
     def is_victory_tile(self, col, row):
         """
-        Vérifie si la tuile à la position (col, row) est la tuile de victoire.
+        Vérifie si la tuile à la position (col, row) est la tuile de victoire (avec le gros V vert).
 
         Paramètres:
         - col, row: indices de la tuile

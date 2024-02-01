@@ -20,10 +20,10 @@ def main_menu(screen):
     while True:
         screen.fill(gameconstants.BG)
         screen.blit(logo, logo_rect)
-        # Dessinez le texte du menu
+        # Ici on dessine le texte du menu
         font = pygame.font.Font(None, 36)
 
-        # Dessinez les options du menu
+        # On dessine les options du menu
         menu_options = ["Jouer", "Options", "Quitter"]  # attention, si les mots ne correspondent pas exactement à ceux des conditions if juste en dessous pour valider une sélection, l'action n'est pas détectée.
         for i, option in enumerate(menu_options):
             text_color = (255, 255, 255)  # couleur du texte dans le menu

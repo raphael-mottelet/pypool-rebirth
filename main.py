@@ -22,8 +22,6 @@ tile_map = TileMap(gameconstants.TILE_SIZE, "gamelevels/tilemap_data.json") #on 
 
 clock = pygame.time.Clock()
 
-screen_scroll=[0,0]
-
 moving_left = False
 moving_right = False
 moving_up = False

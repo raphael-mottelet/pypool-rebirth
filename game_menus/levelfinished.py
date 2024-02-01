@@ -11,13 +11,13 @@ def Level_finished(screen):
 
         font = pygame.font.Font(None, 36)
 
-        menu_options = ["Niveau {} validé !","Recommencer", "Quitter"]
+        menu_options = ["Niveau {} validé !","Recommencer", "Quitter"] #entre crochet devait se trouver le numéro du niveau ou le nom du fichier json, mais la génération de map n'a pas pu être terminée.
         for i, option in enumerate(menu_options):
-            text_color = (255, 255, 255)
+            text_color = (255, 255, 255) #texte de base en blanc
             if i == selected_option:
-                text_color = (255, 0, 0)
+                text_color = (255, 0, 0) #comme tout à l'heure, code qui permet une surbrillance en rouge pour la sélection
             text = font.render(option, True, text_color)
-            text_rect = text.get_rect(center=(gameconstants.SCREEN_WIDTH // 2, 200 + i * 50))
+            text_rect = text.get_rect(center=(gameconstants.SCREEN_WIDTH // 2, 200 + i * 50)) #positionnement du texte dans la fenêtre
             screen.blit(text, text_rect)
 
         pygame.display.update()
