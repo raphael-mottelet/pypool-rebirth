@@ -1,5 +1,4 @@
 import pygame
-import gameconstants
 import json
 
 class TileMap:

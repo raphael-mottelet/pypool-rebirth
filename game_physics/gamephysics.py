@@ -22,14 +22,3 @@ def is_collision(tile_map, x, y, width, height):
                 return True  # Collision avec un mur
 
     return False  # Pas de collision
-
-
-"""code qui fait traverser les murs mais gere un peut les colisions
-    for row in range(tile_y, int((y + height) / tile_map.tile_size)):
-            for col in range(tile_x, int((x + width) / tile_map.tile_size)):
-                if tile_map.is_wall(col, row):
-                    print(f"Collision with wall at ({col}, {row})")  #Ligne pour le débogage
-                    return True  # Collision avec un mur
-
-    return False  # Pas de collision
-"""

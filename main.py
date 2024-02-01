@@ -2,7 +2,6 @@ import sys
 sys.path.append("..") #cette ligne nous permet de faire des imports en dehors du repertoire
 import pygame
 import gameconstants
-from game_character.gamecharacter import Character
 from game_character.gamecharacter import scale_img
 from game_physics.gamephysics import is_collision
 from game_physics.tilemap import TileMap
